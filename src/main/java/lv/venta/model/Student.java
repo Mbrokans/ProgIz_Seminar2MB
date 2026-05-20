@@ -20,6 +20,7 @@ public class Student {
 	private String surname;
 	
 	public Student(String name, String surname) {
-		
+		setName(name);
+		setSurname(surname);
 	}
 }
