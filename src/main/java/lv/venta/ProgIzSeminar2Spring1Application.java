@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ProgIzSeminar2Spring1Application {
@@ -32,6 +33,7 @@ public class ProgIzSeminar2Spring1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(ProgIzSeminar2Spring1Application.class, args);
 	}
+	@Bean
 	public CommandLineRunner saveDataInDB(StudentRepo studRepo, ProfessorRepo profRepo,
 			CourseRepo courseRepo, GradeRepo graderepo) {
 		return new CommandLineRunner() {

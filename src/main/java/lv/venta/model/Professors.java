@@ -35,12 +35,12 @@ public class Professors {
 	@Column(name = "Name")
 	@NotEmpty
 	@NotNull
-	@Pattern(regexp="[A-Z]{1}[a-z]{40}([ ]{1}([A-Z]{1}[a-z]{2,40}))?")
+	@Pattern(regexp="[A-Z]{1}[a-z]{2,40}([ ]{1}([A-Z]{1}[a-z]{2,40}))?")
 	private String name;
 	@Column(name = "Surname")
 	@NotEmpty
 	@NotNull
-	@Pattern(regexp="[A-Z]{1}[a-z]{40}([ -]{1}([A-Z]{1}[a-z]{2,40}))?")
+	@Pattern(regexp="[A-Z]{1}[a-z]{2,40}([ -]{1}([A-Z]{1}[a-z]{2,40}))?")
 	private String surname;
 	@Column(name = "Degree")
 	@NotNull

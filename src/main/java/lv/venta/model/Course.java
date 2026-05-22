@@ -38,7 +38,7 @@ public class Course {
 	@Column(name = "Title",unique = true)
 	@NotEmpty
 	@NotNull
-	@Pattern(regexp="[A-Z]{1}[A-Za-z0-9]{40}")
+	@Pattern(regexp="[A-Z]{1}[A-Za-z0-9 ]{3,40}")
 	private String title;
 	@Column(name="CP")
 	@Min(1)
