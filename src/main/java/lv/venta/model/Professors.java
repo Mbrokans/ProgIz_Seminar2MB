@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -44,6 +46,9 @@ public class Professors {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Degree degree;
+	@OneToOne(mappedBy="professor")
+	@ToString.Exclude
+	private Course course;
 	
 	public Professors(String name, String surname, Degree degree) {
 		setName(name);
