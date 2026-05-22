@@ -1,0 +1,53 @@
+package lv.venta.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@Table(name="ProfessorsTable")
+@Entity
+public class Professors {
+	
+	@Column(name="Idp")
+	@Id
+	@GeneratedValue (strategy= GenerationType.AUTO)
+	@Setter(value = AccessLevel.NONE)
+	private long idp;
+	@Column(name = "Name")
+	@NotEmpty
+	@NotNull
+	@Pattern(regexp="[A-Z]{1}[a-z]{40}([ ]{1}([A-Z]{1}[a-z]{2,40}))?")
+	private String name;
+	@Column(name = "Surname")
+	@NotEmpty
+	@NotNull
+	@Pattern(regexp="[A-Z]{1}[a-z]{40}([ -]{1}([A-Z]{1}[a-z]{2,40}))?")
+	private String surname;
+	@Column(name = "Degree")
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Degree degree;
+	
+	public Professors(String name, String surname, Degree degree) {
+		setName(name);
+		setSurname(surname);
+		setDegree(degree);
+	}
+}
