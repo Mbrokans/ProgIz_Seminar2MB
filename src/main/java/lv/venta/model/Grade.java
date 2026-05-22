@@ -35,6 +35,12 @@ public class Grade {
 	@ManyToOne
 	@JoinColumn(name="Ids")
 	private Student student;
+	@ManyToOne
+	@JoinColumn(name="Idc")
 	private Course course;
-	private Professors professor;
+	public Grade(int grade, Student student, Course course) {
+		setGrade(grade);
+		setStudent(student);
+		setCourse(course);
+	}
 }
