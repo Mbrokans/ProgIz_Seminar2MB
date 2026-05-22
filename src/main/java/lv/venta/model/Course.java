@@ -1,0 +1,41 @@
+package lv.venta.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+@Table(name="CourseTable")
+@Entity
+public class Course {
+	@Column(name="Idc")
+	@Id
+	@GeneratedValue (strategy= GenerationType.AUTO)
+	@Setter(value = AccessLevel.NONE)
+	private long idc;
+	@Column(name = "Title",unique = true)
+	@NotEmpty
+	@NotNull
+	@Pattern(regexp="[A-Z]{1}[A-Za-z0-9]{40}")
+	private String title;
+	@Column(name="CP")
+	@Min(1)
+	@Max(40)
+	private int creditpoints;
+}
