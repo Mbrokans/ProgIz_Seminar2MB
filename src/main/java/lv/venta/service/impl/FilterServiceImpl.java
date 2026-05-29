@@ -7,14 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import lv.venta.model.Course;
 import lv.venta.model.Degree;
 import lv.venta.model.Grade;
+import lv.venta.repo.CourseRepo;
 import lv.venta.repo.GradeRepo;
+import lv.venta.repo.ProfessorRepo;
 import lv.venta.repo.StudentRepo;
 import lv.venta.service.ICRUDfilterservice;
 
 public class FilterServiceImpl implements ICRUDfilterservice{
 	@Autowired
 	private StudentRepo studRepo;
+	@Autowired
 	private GradeRepo gradeRepo;
+	@Autowired
+	private CourseRepo courseRepo;
+	@Autowired
+	private ProfessorRepo profRepo;
 	@Override
 	public ArrayList<Grade> filterGradesByStudentId(long id) throws Exception {
 		if(id<1) {
@@ -35,14 +42,38 @@ public class FilterServiceImpl implements ICRUDfilterservice{
 
 	@Override
 	public ArrayList<Grade> filterGradesByCourseTitle(String title) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(gradeRepo.count()==0) {
+			throw new Exception("Atzimju tabula ir tuksa un nav iespejams filtret");
+		}
+		if(title==null||title.isEmpty()||!title.matches("[A-Z]{1}[A-Za-z0-9 ]{3,40}")) {
+			throw new Exception("Kursa nosaukuma nav ievadits korekti");
+		}
+		if(!courseRepo.existsByTitle(title)) {
+			throw new Exception("kurss ar nosaukumu " + title+ " neeksiste");
+		}
+		ArrayList<Grade> results = gradeRepo.findByCourseTitle(title);
+		if(results.isEmpty()) {
+			throw new Exception("Nav neviena atzime, kura ir piesaistita kursam");
+		}
+		return results;
 	}
 
 	@Override
 	public ArrayList<Course> filterCoursesByProfessorDegree(Degree degree) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(degree==null) {
+			throw new Exception("Nevar atrasts, jo degree ir tukss");
+		}
+		if(courseRepo.count()==0) {
+			throw new Exception("Tabula ir tuksa nav iespejams filtret");
+		}
+		if(profRepo.existsByDegree(degree)) {
+			throw new Exception("profesori ar sadu "+degree+" neeksiste");
+		}
+		ArrayList<Course> results = courseRepo.findByProfessorDegree(degree);
+		if(results.isEmpty()) {
+			throw new Exception("Nav neviens kurs kurs butu piesaistits profesoram ar so gradu "+degree);
+		}
+		return results;
 	}
 
 }
