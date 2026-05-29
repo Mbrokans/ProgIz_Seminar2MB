@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import lv.venta.model.Course;
 import lv.venta.model.Degree;
 import lv.venta.model.Grade;
+import lv.venta.model.Student;
 import lv.venta.repo.CourseRepo;
 import lv.venta.repo.GradeRepo;
 import lv.venta.repo.ProfessorRepo;
@@ -72,6 +73,21 @@ public class FilterServiceImpl implements ICRUDfilterservice{
 		ArrayList<Course> results = courseRepo.findByProfessorDegree(degree);
 		if(results.isEmpty()) {
 			throw new Exception("Nav neviens kurs kurs butu piesaistits profesoram ar so gradu "+degree);
+		}
+		return results;
+	}
+
+	@Override
+	public ArrayList<Student> filterStudentByBadGrades() throws Exception {
+		if(gradeRepo.count()==0) {
+			throw new Exception("Atzimju tabula ir tuksa un nav iespejams filtret");
+		}
+		if(studRepo.count()==0) {
+			throw new Exception("Studentu tabula ir tuksa nevar filtret datus");
+		}
+		ArrayList<Student> results = studRepo.findByGradesGradeLessThan(4);
+		if(results.isEmpty()) {
+			throw new Exception("nav neviena studenta kuram butu nesekmiga atzime");
 		}
 		return results;
 	}
