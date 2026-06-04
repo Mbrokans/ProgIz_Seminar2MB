@@ -23,7 +23,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-//@Table(name="ProfessorsTable")
+@Table(name="ProfessorsTable")
 @Entity
 public class Professors extends Person {
 	

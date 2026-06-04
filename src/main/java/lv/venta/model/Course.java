@@ -27,7 +27,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-//@Table(name="CourseTable")
+@Table(name="CourseTable")
 @Entity
 public class Course {
 	@Column(name="Idc")

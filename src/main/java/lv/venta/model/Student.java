@@ -26,7 +26,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-//@Table(name="StudentTable")
+@Table(name="StudentTable")
 @Entity
 public class Student extends Person {
 	

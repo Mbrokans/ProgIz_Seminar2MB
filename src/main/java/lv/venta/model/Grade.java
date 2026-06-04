@@ -20,7 +20,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-//@Table(name="GradeTable") // ja strategija ir single table tas attiecas uz visiem kur it atseviski tables
+@Table(name="GradeTable") // ja strategija ir single table tas attiecas uz visiem kur it atseviski tables
 @Entity
 public class Grade {
 	@Column(name="Idg")
