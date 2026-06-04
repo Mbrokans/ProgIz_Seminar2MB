@@ -1,10 +1,18 @@
 package lv.venta.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +22,16 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@MappedSuperclass
+@Table(name="personTable")
+@Entity
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 public class Person {
+	@Column(name="Idp")
+	@Id
+	@GeneratedValue (strategy= GenerationType.AUTO)
+	@Setter(value = AccessLevel.NONE)
+	private long idp;
 	@Column(name = "Name")
 	@NotEmpty
 	@NotNull
@@ -28,4 +42,9 @@ public class Person {
 	@NotNull
 	@Pattern(regexp="[A-Z]{1}[a-z]{2,40}([ -]{1}([A-Z]{1}[a-z]{2,40}))?")
 	private String surname;
+	
+	public Person(String name, String surname) {
+		setName(name);
+		setSurname(surname);
+	}
 }
