@@ -42,13 +42,21 @@ public class ProgIzSeminar2Spring1Application {
 			public void run(String... args) throws Exception {
 				Professors p1 = new Professors("Karlis", "Immers", Degree.master);
 				Professors p2 = new Professors("Karina","Skirmante", Degree.master);
+				Professors p3 = new Professors("Raita","Rollande", Degree.phd);
 				profRepo.saveAll(Arrays.asList(p1,p2));
 				Student s1 = new Student("Mikus Valts","Sarovs");
 				Student s2 = new Student("Kristers","Dogudovs");
 				studRepo.saveAll(Arrays.asList(s1,s2));
 				Course c1 = new Course("Programmesana JAVA", 4, p2);
 				Course c2 = new Course("Timekla tehnologijas", 6 ,p1);
-				courseRepo.saveAll(Arrays.asList(c1,c2));
+				Course c3 = new Course("Prog inz", 6 ,p2);
+				c3.addProffesor(p3);
+				courseRepo.saveAll(Arrays.asList(c1,c2, c3));
+				p1.addCourse(c2);
+				p2.addCourse(c1);
+				p2.addCourse(c3);
+				p3.addCourse(c3);
+				profRepo.saveAll(Arrays.asList(p1,p2,p3));
 				Grade g1 = new Grade(8,s1,c1);
 				Grade g2 = new Grade(6,s1,c2);
 				Grade g3 = new Grade(10,s2,c1);

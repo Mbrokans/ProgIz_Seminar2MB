@@ -1,5 +1,8 @@
 package lv.venta.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,13 +50,18 @@ public class Professors {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Degree degree;
-	@OneToOne(mappedBy="professor")
+	@ManyToMany(mappedBy="professors")
 	@ToString.Exclude
-	private Course course;
+	private Collection<Course> courses = new ArrayList<>();
 	
 	public Professors(String name, String surname, Degree degree) {
 		setName(name);
 		setSurname(surname);
 		setDegree(degree);
+	}
+	public void addCourse(Course course) {
+		if(!courses.contains(course)) {
+			courses.add(course);
+		}
 	}
 }
