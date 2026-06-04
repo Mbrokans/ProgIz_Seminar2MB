@@ -25,23 +25,13 @@ import lombok.ToString;
 @ToString
 @Table(name="ProfessorsTable")
 @Entity
-public class Professors {
+public class Professors extends Person {
 	
 	@Column(name="Idp")
 	@Id
 	@GeneratedValue (strategy= GenerationType.AUTO)
 	@Setter(value = AccessLevel.NONE)
 	private long idp;
-	@Column(name = "Name")
-	@NotEmpty
-	@NotNull
-	@Pattern(regexp="[A-Z]{1}[a-z]{2,40}([ ]{1}([A-Z]{1}[a-z]{2,40}))?")
-	private String name;
-	@Column(name = "Surname")
-	@NotEmpty
-	@NotNull
-	@Pattern(regexp="[A-Z]{1}[a-z]{2,40}([ -]{1}([A-Z]{1}[a-z]{2,40}))?")
-	private String surname;
 	@Column(name = "Degree")
 	@NotNull
 	@Enumerated(EnumType.STRING)
