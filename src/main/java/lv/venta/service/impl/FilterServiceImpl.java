@@ -2,6 +2,7 @@ package lv.venta.service.impl;
 
 import java.util.ArrayList;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,5 +93,8 @@ public class FilterServiceImpl implements ICRUDfilterservice{
 		}
 		return results;
 	}
+
+
+
 
 }
