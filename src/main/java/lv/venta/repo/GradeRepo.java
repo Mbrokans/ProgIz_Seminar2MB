@@ -8,7 +8,7 @@ import lv.venta.model.Grade;
 
 public interface GradeRepo extends CrudRepository<Grade, Long> {
 
-	ArrayList<Grade> findByStudentIds(long id);
+	ArrayList<Grade> findByStudentIdp(long id);
 
 	ArrayList<Grade> findByCourseTitle(String title);
 

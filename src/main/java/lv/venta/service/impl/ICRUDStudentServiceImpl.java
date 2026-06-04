@@ -44,7 +44,7 @@ public class ICRUDStudentServiceImpl implements ICRUDStudentService {
 	@Override
 	public void deleteById(long id) throws Exception {
 		Student studentsForDelete = retrieveById(id);
-		ArrayList<Grade> allGradesForStudent= gradeRepo.findByStudentIds(id);
+		ArrayList<Grade> allGradesForStudent= gradeRepo.findByStudentIdp(id);
 		for(Grade tempG: allGradesForStudent) {
 			tempG.setStudent(null);
 			gradeRepo.save(tempG);

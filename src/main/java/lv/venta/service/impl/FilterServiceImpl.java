@@ -36,7 +36,7 @@ public class FilterServiceImpl implements ICRUDfilterservice{
 		if(gradeRepo.count()==0) {
 			throw new Exception("Atzimju tabula ir tuksa un nevaram filtret");
 		}
-		ArrayList<Grade> resultFromDB = gradeRepo.findByStudentIds(id);
+		ArrayList<Grade> resultFromDB = gradeRepo.findByStudentIdp(id);
 		if(resultFromDB.isEmpty()) {
 			throw new Exception("studenta ar id "+id+" nav piesaistita neviena atzime");
 		}
