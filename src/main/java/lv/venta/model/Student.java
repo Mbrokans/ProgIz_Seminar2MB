@@ -30,16 +30,10 @@ import lombok.ToString;
 @Entity
 public class Student extends Person {
 	
-	@Column(name="Ids")
-	@Id
-	@GeneratedValue (strategy= GenerationType.AUTO)
-	@Setter(value = AccessLevel.NONE)
-	private long ids;
 	@OneToMany(mappedBy = "student")
 	@ToString.Exclude
 	private Collection<Grade> grades= new ArrayList<>();
 	public Student(String name, String surname) {
-		setName(name);
-		setSurname(surname);
+		super(name, surname);
 	}
 }

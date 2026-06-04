@@ -27,11 +27,6 @@ import lombok.ToString;
 @Entity
 public class Professors extends Person {
 	
-	@Column(name="Idp")
-	@Id
-	@GeneratedValue (strategy= GenerationType.AUTO)
-	@Setter(value = AccessLevel.NONE)
-	private long idp;
 	@Column(name = "Degree")
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -41,8 +36,7 @@ public class Professors extends Person {
 	private Course course;
 	
 	public Professors(String name, String surname, Degree degree) {
-		setName(name);
-		setSurname(surname);
+		super(name, surname);
 		setDegree(degree);
 	}
 }
